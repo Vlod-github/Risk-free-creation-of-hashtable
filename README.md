@@ -1,4 +1,4 @@
-# Risk-free-creation-of-hashtable
+# Risk-free creation of hashtable
 ## Example
 ```scala
 local hashtable ht = HT_create()
