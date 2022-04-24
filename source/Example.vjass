@@ -1,0 +1,22 @@
+function test takes nothing returns nothing
+	local hashtable ht = HT_create()
+	local hashtable ht2 = HT_create()
+	local hashtable ht3 = HT_create()
+	local integer hid
+	call TriggerSleepAction(0)
+	set hid = GetHandleId(ht2)
+	call DisplayTextToPlayer(Player(0), 0, 0, I2S(hid))
+	set hid = GetHandleId(ht3)
+	call DisplayTextToPlayer(Player(0), 0, 0, I2S(hid))
+	call HT_destroy(ht2)
+	call HT_destroy(ht3)
+	call HT_destroy(ht3)
+	set ht3 = HT_create()
+	set ht2 = HT_create()
+	
+	set hid = GetHandleId(ht2)
+	call DisplayTextToPlayer(Player(0), 0, 0, I2S(hid))
+	set hid = GetHandleId(ht3)
+	call DisplayTextToPlayer(Player(0), 0, 0, I2S(hid))
+
+endfunction

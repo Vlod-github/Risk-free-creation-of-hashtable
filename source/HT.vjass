@@ -1,0 +1,36 @@
+library HT
+	globals
+		private hashtable array ht_array
+		private hashtable ht = InitHashtable()
+		private integer current = 0
+		private integer max = 0
+		private integer array pointers
+	endglobals
+	
+	public function create takes nothing returns hashtable
+		local integer this = current
+		if current == 0 then
+			set max = max + 1
+			set this = max
+			if this > 256 then
+				return null
+			endif
+			set ht_array[this] = InitHashtable()
+			call SaveInteger(ht, 0, GetHandleId(ht_array[this]), this)
+		else
+			set current = pointers[this]
+		endif
+		set pointers[this] = -1
+		return ht_array[this]
+	endfunction
+	
+	public function destroy takes hashtable h returns nothing
+		local integer this = LoadInteger(ht, 0, GetHandleId(h))
+		if this == 0 or pointers[this] != -1 then
+			return
+		endif
+		set pointers[this] = current
+		set current = this
+	endfunction
+
+endlibrary
